@@ -1,6 +1,9 @@
 create database if not exists auditoria_usuario_producto_in4av;
 use auditoria_usuario_producto_in4av;
 
+create database if not exists auditoria_usuario_producto_in4av;
+use auditoria_usuario_producto_in4av;
+
 create table if not exists usuarios (
     id_user varchar(36) not null,
     name varchar(50) not null check (length(name) <= 50),

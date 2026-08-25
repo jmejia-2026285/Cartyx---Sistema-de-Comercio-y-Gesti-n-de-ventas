@@ -7,7 +7,6 @@ package org.josemejia.system.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -179,11 +178,7 @@ public class ProductoController {
     }
 
     private void mostrarAlerta(String mensaje) {
-        Alert alerta = new Alert(Alert.AlertType.WARNING);
-        alerta.setTitle("Atención");
-        alerta.setHeaderText(null);
-        alerta.setContentText(mensaje);
-        alerta.showAndWait();
+        AnimacionUtils.mostrarAlertaPersonalizada("Atención", mensaje, AnimacionUtils.TipoNotificacion.ADVERTENCIA);
     }
     
         @FXML
@@ -191,7 +186,7 @@ public class ProductoController {
 
     @FXML
     private void handleContactarAdmin() {
-        MainClass.getAppHostServices().showDocument("https://github.com/AngelML-2026285");
+        MainClass.getAppHostServices().showDocument("https://github.com/jmejia-2026285");
     }
 
 }

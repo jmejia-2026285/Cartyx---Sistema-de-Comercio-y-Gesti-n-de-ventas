@@ -5,7 +5,6 @@
 package org.josemejia.system.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -13,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.josemejia.system.model.User;
 import org.josemejia.system.service.AuthService;
+import org.josemejia.system.utils.AnimacionUtils;
 import org.josemejia.system.utils.ViewFactory;
 /**
  *
@@ -74,11 +74,7 @@ public class RegistroController {
 
         authService.registrar(nuevoUsuario);
 
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Registro exitoso");
-        alerta.setHeaderText(null);
-        alerta.setContentText("Tu cuenta se creo correctamente. Ahora puedes iniciar sesion.");
-        alerta.showAndWait();
+        AnimacionUtils.mostrarAlertaPersonalizada("Registro exitoso", "Tu cuenta se creo correctamente. Ahora puedes iniciar sesion.", AnimacionUtils.TipoNotificacion.EXITO);
 
         viewFactory.viewLogin();
     }

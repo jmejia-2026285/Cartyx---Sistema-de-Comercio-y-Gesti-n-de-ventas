@@ -49,6 +49,7 @@
             <TextField fx:id="txtPrecio" promptText="Precio" styleClass="campo-texto" />
             <TextField fx:id="txtDescripcion" promptText="Descripción" styleClass="campo-texto" />
             <TextField fx:id="txtCategoria" promptText="Categoría" styleClass="campo-texto" />
+            <TextField fx:id="txtImagen" promptText="URL de la imagen" styleClass="campo-texto" />
          </children>
       </HBox>
 
