@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.josemejia.system.controller;
 
 import javafx.fxml.FXML;
@@ -9,6 +13,11 @@ import org.josemejia.system.service.AuthService;
 import org.josemejia.system.utils.AnimacionUtils;
 import org.josemejia.system.utils.SessionManager;
 import org.josemejia.system.utils.ViewFactory;
+
+/**
+ *
+ * @author mejia
+ */
 
 public class DashboardController {
 
@@ -26,6 +35,7 @@ public class DashboardController {
 
     @FXML
     private Button btnCerrarSesion;
+            
 
     private final AuthService authService = new AuthService();
     private final ViewFactory viewFactory = new ViewFactory();

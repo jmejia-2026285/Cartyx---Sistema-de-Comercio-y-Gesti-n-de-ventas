@@ -11,11 +11,11 @@ import org.josemejia.system.model.Producto;
 
 public class ProductoRepository implements ProductoInterface {
 
-    private static final String SP_CREAR = "{call sp_producto_crear(?, ?, ?, ?)}";
+    private static final String SP_CREAR = "{call sp_producto_crear(?, ?, ?, ?, ?)}";
 
     private static final String SP_LISTAR = "{call sp_producto_listar()}";
 
-    private static final String SP_ACTUALIZAR = "{call sp_producto_actualizar(?, ?, ?, ?, ?)}";
+    private static final String SP_ACTUALIZAR = "{call sp_producto_actualizar(?, ?, ?, ?, ?, ?)}";
 
     private static final String SP_ELIMINAR = "{call sp_producto_eliminar(?)}";
 
@@ -28,6 +28,7 @@ public class ProductoRepository implements ProductoInterface {
             sentencia.setDouble(2, producto.getPrecio());
             sentencia.setString(3, producto.getDescripcion());
             sentencia.setString(4, producto.getCategoria());
+            sentencia.setString(5, producto.getImagen());
 
             sentencia.executeUpdate();
 
@@ -50,7 +51,8 @@ public class ProductoRepository implements ProductoInterface {
                         resultado.getString("nombre"),
                         resultado.getDouble("precio"),
                         resultado.getString("descripcion"),
-                        resultado.getString("categoria")
+                        resultado.getString("categoria"),
+                        resultado.getString("imagen")
                 ));
             }
 
@@ -71,6 +73,7 @@ public class ProductoRepository implements ProductoInterface {
             sentencia.setDouble(3, producto.getPrecio());
             sentencia.setString(4, producto.getDescripcion());
             sentencia.setString(5, producto.getCategoria());
+            sentencia.setString(6, producto.getImagen());
 
             sentencia.executeUpdate();
 

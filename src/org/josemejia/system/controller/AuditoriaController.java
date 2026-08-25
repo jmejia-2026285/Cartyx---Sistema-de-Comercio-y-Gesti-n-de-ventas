@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.josemejia.system.controller;
 
 import java.util.List;
@@ -16,6 +20,10 @@ import org.josemejia.system.service.AuditoriaService;
 import org.josemejia.system.utils.AnimacionUtils;
 import org.josemejia.system.utils.SessionManager;
 import org.josemejia.system.utils.ViewFactory;
+/**
+ *
+ * @author mejia
+ */
 
 public class AuditoriaController {
 
@@ -53,6 +61,8 @@ public class AuditoriaController {
         colEntidad.setCellValueFactory(new PropertyValueFactory<>("entidad"));
         colDetalle.setCellValueFactory(new PropertyValueFactory<>("detalle"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+
+        tablaAuditoria.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         User usuarioActual = SessionManager.getInstanciaSessionManager().getUsuarioActual();
 

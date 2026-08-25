@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.josemejia.system.controller;
 
 import javafx.fxml.FXML;
@@ -10,6 +14,10 @@ import javafx.scene.control.TextField;
 import org.josemejia.system.model.User;
 import org.josemejia.system.service.AuthService;
 import org.josemejia.system.utils.ViewFactory;
+/**
+ *
+ * @author mejia
+ */
 
 public class RegistroController {
 
@@ -69,7 +77,7 @@ public class RegistroController {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Registro exitoso");
         alerta.setHeaderText(null);
-        alerta.setContentText("Tu cuenta se creó correctamente. Ahora puedes iniciar sesión.");
+        alerta.setContentText("Tu cuenta se creo correctamente. Ahora puedes iniciar sesion.");
         alerta.showAndWait();
 
         viewFactory.viewLogin();

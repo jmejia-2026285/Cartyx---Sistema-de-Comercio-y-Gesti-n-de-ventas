@@ -1,4 +1,8 @@
-package org.josemejia.system.model;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */package org.josemejia.system.model;
 
 public class User {
 
@@ -9,6 +13,10 @@ public class User {
     private String user;
     private String idUser;
     private String rol;
+    /**
+ *
+ * @author mejia
+ */
 
     public User(String name, String lastname, String email, String password, String user, String idUser, String rol) {
         this.name = name;
