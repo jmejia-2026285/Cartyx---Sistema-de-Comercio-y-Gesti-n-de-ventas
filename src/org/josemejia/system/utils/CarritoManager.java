@@ -38,6 +38,28 @@ public class CarritoManager {
         items.removeIf(item -> item.getProducto().getIdProducto().equals(producto.getIdProducto()));
     }
 
+    public void aumentarCantidad(Producto producto) {
+        for (ItemCarrito item : items) {
+            if (item.getProducto().getIdProducto().equals(producto.getIdProducto())) {
+                item.setCantidad(item.getCantidad() + 1);
+                return;
+            }
+        }
+    }
+
+    public void disminuirCantidad(Producto producto) {
+        for (ItemCarrito item : items) {
+            if (item.getProducto().getIdProducto().equals(producto.getIdProducto())) {
+                if (item.getCantidad() <= 1) {
+                    items.remove(item);
+                } else {
+                    item.setCantidad(item.getCantidad() - 1);
+                }
+                return;
+            }
+        }
+    }
+
     public double calcularTotal() {
         double total = 0;
         for (ItemCarrito item : items) {

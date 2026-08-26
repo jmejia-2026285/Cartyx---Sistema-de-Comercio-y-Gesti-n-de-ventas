@@ -58,14 +58,20 @@ public class AnimacionUtils {
         Label etiquetaMensaje = new Label(mensaje);
         etiquetaMensaje.setWrapText(true);
         etiquetaMensaje.setMaxWidth(300);
-        Image imagenRem = new Image(AnimacionUtils.class.getResourceAsStream(tipo.getRutaImagen()));
-        ImageView vistaRem = new ImageView(imagenRem);
-        vistaRem.setFitWidth(75);
-        vistaRem.setPreserveRatio(true);
         HBox contenedorLayout = new HBox(15);
         contenedorLayout.setAlignment(javafx.geometry.Pos.BOTTOM_CENTER);
         HBox.setHgrow(etiquetaMensaje, javafx.scene.layout.Priority.ALWAYS);
-        contenedorLayout.getChildren().addAll(etiquetaMensaje, vistaRem);
+        contenedorLayout.getChildren().add(etiquetaMensaje);
+
+        java.io.InputStream flujoImagen = AnimacionUtils.class.getResourceAsStream(tipo.getRutaImagen());
+        if (flujoImagen != null) {
+            Image imagenRem = new Image(flujoImagen);
+            ImageView vistaRem = new ImageView(imagenRem);
+            vistaRem.setFitWidth(150);
+            vistaRem.setPreserveRatio(true);
+            contenedorLayout.getChildren().add(vistaRem);
+        }
+
         alerta.getDialogPane().setContent(contenedorLayout);
         alerta.showAndWait();
     }

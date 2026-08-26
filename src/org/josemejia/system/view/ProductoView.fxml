@@ -13,16 +13,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="raiz" prefHeight="550.0" prefWidth="700.0" spacing="14" stylesheets="@../resources/styles/ProductoStyles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.ProductoController">
+<VBox fx:id="raiz" prefHeight="600.0" prefWidth="850.0" spacing="14" stylesheets="@../resources/styles/ProductoStyles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.ProductoController">
    <padding>
       <Insets bottom="18" left="18" right="18" top="18" />
    </padding>
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="107.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="149.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/image/KinalLogoRemCuteXD.png" />
+                  <Image url="@../resources/image/cartyx_rem_kinal_logo.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" prefHeight="108.0" prefWidth="437.0" text="Productos" textFill="#fffafa">

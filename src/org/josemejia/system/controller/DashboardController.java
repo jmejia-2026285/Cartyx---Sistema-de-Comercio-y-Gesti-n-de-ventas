@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.josemejia.system.controller;
 
 import javafx.fxml.FXML;
@@ -13,11 +9,6 @@ import org.josemejia.system.service.AuthService;
 import org.josemejia.system.utils.AnimacionUtils;
 import org.josemejia.system.utils.SessionManager;
 import org.josemejia.system.utils.ViewFactory;
-
-/**
- *
- * @author mejia
- */
 
 public class DashboardController {
 
@@ -34,8 +25,13 @@ public class DashboardController {
     private Button btnAuditoria;
 
     @FXML
+    private Button btnCatalogo;
+
+    @FXML
+    private Button btnCarrito;
+
+    @FXML
     private Button btnCerrarSesion;
-            
 
     private final AuthService authService = new AuthService();
     private final ViewFactory viewFactory = new ViewFactory();
@@ -45,13 +41,32 @@ public class DashboardController {
         User usuarioActual = SessionManager.getInstanciaSessionManager().getUsuarioActual();
         lblUsuario.setText("Bienvenido, " + usuarioActual.getName());
 
-        boolean esAdministrador = "administrador".equals(usuarioActual.getRol());
+        // 1. Limpiamos espacios e ignoramos mayúsculas/minúsculas
+        String rol = (usuarioActual.getRol() != null) ? usuarioActual.getRol().trim() : "";
+        boolean esAdministrador = "admin".equalsIgnoreCase(rol) || "administrador".equalsIgnoreCase(rol);
+
+        // 2. Verificación rápida en consola
+        System.out.println("¿Es admin la condición?: " + esAdministrador); // Debe dar true
+
+        // 3. Aplicar visibilidad
+        btnProductos.setVisible(esAdministrador);
+        btnProductos.setManaged(esAdministrador);
+
         btnAuditoria.setVisible(esAdministrador);
         btnAuditoria.setManaged(esAdministrador);
 
+        btnCatalogo.setVisible(!esAdministrador);
+        btnCatalogo.setManaged(!esAdministrador);
+
+        btnCarrito.setVisible(!esAdministrador);
+        btnCarrito.setManaged(!esAdministrador);
+
+        // Animaciones
         AnimacionUtils.aplicarFadeIn(raiz);
         AnimacionUtils.aplicarEfectoHover(btnProductos);
         AnimacionUtils.aplicarEfectoHover(btnAuditoria);
+        AnimacionUtils.aplicarEfectoHover(btnCatalogo);
+        AnimacionUtils.aplicarEfectoHover(btnCarrito);
         AnimacionUtils.aplicarEfectoHover(btnCerrarSesion);
     }
 
@@ -63,6 +78,16 @@ public class DashboardController {
     @FXML
     private void handleAuditoria() {
         viewFactory.viewAuditoria();
+    }
+
+    @FXML
+    private void handleCatalogo() {
+        viewFactory.viewCatalogo();
+    }
+
+    @FXML
+    private void handleCarrito() {
+        viewFactory.viewCarrito();
     }
 
     @FXML

@@ -22,6 +22,9 @@ begin
     values (uuid(), p_name, p_lastname, p_email, p_user, p_password, p_rol);
 end$$
 
+delimiter ;
+
+delimiter $$
 #read
 create procedure sp_usuario_login(
     in p_user varchar(25),
@@ -58,7 +61,9 @@ begin
     insert into productos (id_producto, nombre, precio, descripcion, categoria, imagen)
     values (uuid(), p_nombre, p_precio, p_descripcion, p_categoria, p_imagen);
 end$$
+delimiter ;
 
+delimiter $$
  #read
 create procedure sp_producto_listar()
 begin
@@ -66,6 +71,10 @@ begin
     from productos;
 end$$
 
+delimiter ;
+
+
+delimiter $$
 #update
 create procedure sp_producto_actualizar(
     in p_id_producto varchar(36),
@@ -85,6 +94,9 @@ begin
     where id_producto = p_id_producto;
 end$$
 
+delimiter ;
+
+delimiter $$
  #delete
 create procedure sp_producto_eliminar(
     in p_id_producto varchar(36)
@@ -117,6 +129,10 @@ begin
     values (uuid(), p_usuario, p_accion, p_entidad, p_detalle);
 end$$
 
+delimiter ;
+
+
+delimiter $$
 #read
 create procedure sp_auditoria_listar()
 begin
@@ -124,6 +140,10 @@ begin
     from auditoria
     order by fecha desc;
 end$$
+
+delimiter ;
+
+delimiter $$
 
 #create
 create procedure sp_compra_crear(
@@ -135,6 +155,9 @@ begin
     insert into compras (id_compra, usuario, total)
     values (p_id_compra, p_usuario, p_total);
 end$$
+delimiter ;
+
+delimiter $$
 
 create procedure sp_detalle_compra_crear(
     in p_id_compra varchar(36),

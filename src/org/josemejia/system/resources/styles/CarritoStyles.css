@@ -1,0 +1,95 @@
+.root {
+    -fx-background-color: #0f172a;
+}
+
+.titulo-vista {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f8fafc;
+}
+
+.texto-total {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #a5b4fc;
+}
+
+.tabla {
+    -fx-background-color: #1e293b;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 2, 0);
+}
+
+.tabla .column-header-background {
+    -fx-background-color: #334155;
+}
+
+.tabla .column-header-background .filler {
+    -fx-background-color: #334155;
+}
+
+.tabla .column-header {
+    -fx-background-color: transparent;
+}
+
+.tabla .column-header .label {
+    -fx-text-fill: #f1f5f9;
+}
+
+.tabla .table-row-cell {
+    -fx-background-color: #1e293b;
+    -fx-text-fill: #e2e8f0;
+}
+
+.tabla .table-row-cell .table-cell {
+    -fx-text-fill: #e2e8f0;
+}
+
+.tabla .table-row-cell:filled:selected {
+    -fx-background-color: #4f46e5;
+}
+
+.tabla .table-row-cell:filled:selected .table-cell {
+    -fx-text-fill: #ffffff;
+}
+
+.tabla .placeholder .label {
+    -fx-text-fill: #64748b;
+}
+
+.boton-cantidad {
+    -fx-background-color: #334155;
+    -fx-text-fill: #f1f5f9;
+    -fx-background-radius: 6;
+    -fx-min-width: 26;
+    -fx-cursor: hand;
+}
+
+.boton-cantidad:hover {
+    -fx-background-color: #475569;
+}
+
+.boton-primario {
+    -fx-background-color: #4f46e5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.boton-primario:hover {
+    -fx-background-color: #4338ca;
+}
+
+.boton-secundario {
+    -fx-background-color: #334155;
+    -fx-text-fill: #f1f5f9;
+    -fx-background-radius: 8;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.boton-secundario:hover {
+    -fx-background-color: #475569;
+}

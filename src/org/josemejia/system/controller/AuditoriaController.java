@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.josemejia.system.controller;
 
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,10 +16,6 @@ import org.josemejia.system.service.AuditoriaService;
 import org.josemejia.system.utils.AnimacionUtils;
 import org.josemejia.system.utils.SessionManager;
 import org.josemejia.system.utils.ViewFactory;
-/**
- *
- * @author mejia
- */
 
 public class AuditoriaController {
 
@@ -85,6 +78,10 @@ public class AuditoriaController {
     }
 
     private void mostrarAlerta(String mensaje) {
-        AnimacionUtils.mostrarAlertaPersonalizada("Acceso restringido", mensaje, AnimacionUtils.TipoNotificacion.ERROR);
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("Acceso restringido");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
 }

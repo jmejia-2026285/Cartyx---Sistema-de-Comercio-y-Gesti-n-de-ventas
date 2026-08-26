@@ -20,6 +20,8 @@
          <children>
             <Button fx:id="btnProductos" maxWidth="Infinity" onAction="#handleProductos" styleClass="boton-menu" text="Productos" />
             <Button fx:id="btnAuditoria" maxWidth="Infinity" onAction="#handleAuditoria" styleClass="boton-menu" text="Auditoría" />
+            <Button fx:id="btnCatalogo" maxWidth="Infinity" onAction="#handleCatalogo" styleClass="boton-menu" text="Catálogo" />
+            <Button fx:id="btnCarrito" maxWidth="Infinity" onAction="#handleCarrito" styleClass="boton-menu" text="Carrito" />
             <Button fx:id="btnCerrarSesion" maxWidth="Infinity" onAction="#handleCerrarSesion" styleClass="boton-menu-salir" text="Cerrar Sesión" />
          </children>
       </VBox>

@@ -17,17 +17,26 @@ public class ProductoService {
     }
 
     public void crear(Producto producto, User usuarioActual) {
+        verificarEsAdministrador(usuarioActual);
         productoRepository.crear(producto);
         auditoriaRepository.registrar(new Auditoria(usuarioActual.getUser(), "crear_producto", "producto", "Creó: " + producto.getNombre()));
     }
 
     public void actualizar(Producto producto, User usuarioActual) {
+        verificarEsAdministrador(usuarioActual);
         productoRepository.actualizar(producto);
         auditoriaRepository.registrar(new Auditoria(usuarioActual.getUser(), "editar_producto", "producto", "Editó: " + producto.getNombre()));
     }
 
     public void eliminar(Producto producto, User usuarioActual) {
+        verificarEsAdministrador(usuarioActual);
         productoRepository.eliminar(producto.getIdProducto());
         auditoriaRepository.registrar(new Auditoria(usuarioActual.getUser(), "eliminar_producto", "producto", "Eliminó: " + producto.getNombre()));
+    }
+
+    private void verificarEsAdministrador(User usuarioActual) {
+        if (!"admin".equals(usuarioActual.getRol())) {
+            throw new IllegalStateException("Solo un administrador puede modificar productos.");
+        }
     }
 }

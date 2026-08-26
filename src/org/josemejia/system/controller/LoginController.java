@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.josemejia.system.model.User;
 import org.josemejia.system.service.AuthService;
+import org.josemejia.system.utils.AnimacionUtils;
 import org.josemejia.system.utils.SessionManager;
 import org.josemejia.system.utils.ViewFactory;
 /**
@@ -46,6 +47,12 @@ public class LoginController {
 
         if (usuario == null || usuario.isBlank() || password == null || password.isBlank()) {
             lblError.setText("Usuario y contraseña son obligatorios.");
+            AnimacionUtils.mostrarAlertaPersonalizada(
+                    "Campos obligatorios",
+                    "Usuario y contraseña son obligatorios.",
+                    AnimacionUtils.TipoNotificacion.ADVERTENCIA
+            );
+
             return;
         }
 
@@ -53,6 +60,12 @@ public class LoginController {
 
         if (user == null) {
             lblError.setText("Usuario o contraseña incorrectos.");
+            AnimacionUtils.mostrarAlertaPersonalizada(
+                    "Error de inicio de sesión",
+                    "El usuario o la contraseña son incorrectos.",
+                    AnimacionUtils.TipoNotificacion.ERROR
+);
+
             return;
         }
 

@@ -55,11 +55,22 @@ public class RegistroController {
     private void handleRegistrarse() {
         if (camposVacios()) {
             lblError.setText("Todos los campos son obligatorios.");
+            AnimacionUtils.mostrarAlertaPersonalizada(
+                    "Campos obligatorios",
+                    "Usuario y contraseña son obligatorios.",
+                    AnimacionUtils.TipoNotificacion.ADVERTENCIA
+);
+
             return;
         }
 
         if (!txtPassword.getText().equals(txtConfirmarPassword.getText())) {
             lblError.setText("Las contraseñas no coinciden.");
+            AnimacionUtils.mostrarAlertaPersonalizada(
+                    "Las contraseñas no coinciden.", " verifica tus credenciales",
+                    AnimacionUtils.TipoNotificacion.ERROR
+);
+
             return;
         }
 

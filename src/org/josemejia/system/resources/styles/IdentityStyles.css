@@ -1,11 +1,27 @@
 /*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 23 ago 2026, 16:39:22
-    Author     : AngelML
-*/
+ * Tokens de identidad compartidos por Login y Registro.
+ * Estilo tarjeta partida: panel blanco (formulario) + panel curvo en
+ * degradado morado/violeta (llamado a la accion complementaria).
+ */
+
+@import "IdentityStyles.css";
+
+.root {
+    -ink: #17171F;
+    -muted: #8B8B95;
+    -field-bg: #F1F1F5;
+    -field-border: #E4E4EA;
+    -card: #FFFFFF;
+    -page-bg-1: #E7E7F7;
+    -page-bg-2: #ECEDF3;
+    -primary: #6A4CEC;
+    -primary-deep: #3B2296;
+    -primary-solid: #4B32B3;
+    -primary-solid-deep: #3A2591;
+    -primary-soft: rgba(106,76,236,0.16);
+    -error: #D3455B;
+}
+
 
 
 .root {
@@ -35,8 +51,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .boton-menu {
-    -fx-background-color: rgba(106,76,236,0.16);
-    -fx-text-fill: #3B2296;
+    -fx-background-color: transparent;
+    -fx-text-fill: -primary-deep;
     -fx-font-size: 13px;
     -fx-alignment: CENTER_LEFT;
     -fx-padding: 10 14 10 14;
@@ -45,13 +61,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .boton-menu:hover {
-    -fx-background-color: #4B32B3;
-    -fx-text-fill: #FFFFFF;
+    -fx-background-color: -primary-soft;
+    -fx-text-fill: -primary-solid-deep;
 }
 
 .boton-menu-salir {
-    -fx-background-color: rgba(211,69,91,0.12);
-    -fx-text-fill: #D3455B;
+    -fx-background-color: transparent;
+    -fx-text-fill: -error;
     -fx-font-size: 13px;
     -fx-alignment: CENTER_LEFT;
     -fx-padding: 10 14 10 14;

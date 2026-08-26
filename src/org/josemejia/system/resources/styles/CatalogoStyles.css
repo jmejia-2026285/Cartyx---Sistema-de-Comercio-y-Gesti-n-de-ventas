@@ -1,0 +1,77 @@
+.root {
+    -fx-background-color: #0f172a;
+}
+
+.titulo-vista {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f8fafc;
+}
+
+.boton-primario {
+    -fx-background-color: #4f46e5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.boton-primario:hover {
+    -fx-background-color: #4338ca;
+}
+
+.boton-secundario {
+    -fx-background-color: #334155;
+    -fx-text-fill: #f1f5f9;
+    -fx-background-radius: 8;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.boton-secundario:hover {
+    -fx-background-color: #475569;
+}
+
+.scroll-catalogo {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-catalogo > .viewport {
+    -fx-background-color: transparent;
+}
+
+.panel-tarjetas {
+    -fx-background-color: transparent;
+    -fx-padding: 4;
+}
+
+.tarjeta-producto {
+    -fx-background-color: #1e293b;
+    -fx-background-radius: 14;
+    -fx-padding: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0, 2, 2);
+}
+
+.contenedor-imagen {
+    -fx-background-color: #334155;
+    -fx-background-radius: 10;
+}
+
+.nombre-producto {
+    -fx-text-fill: #f1f5f9;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.precio-producto {
+    -fx-text-fill: #a5b4fc;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.descripcion-producto {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 12px;
+}

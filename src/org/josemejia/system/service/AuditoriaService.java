@@ -10,7 +10,7 @@ public class AuditoriaService {
     private final AuditoriaRepository auditoriaRepository = new AuditoriaRepository();
 
     public List<Auditoria> listar(User usuarioActual) {
-        if (!"administrador".equals(usuarioActual.getRol())) {
+        if (!"admin".equals(usuarioActual.getRol())) {
             throw new IllegalStateException("Solo un administrador puede ver la auditoría.");
         }
         return auditoriaRepository.listar();

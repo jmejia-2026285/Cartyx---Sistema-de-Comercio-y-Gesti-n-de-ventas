@@ -9,45 +9,87 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" styleClass="loginvbox" stylesheets="@../resources/styles/LoginStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.LoginController">
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" stylesheets="@../resources/styles/LoginStyles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.LoginController">
    <children>
-      <VBox alignment="CENTER" prefHeight="480.0" prefWidth="380.0" spacing="15.0" styleClass="loginvbox">
+      <StackPane fx:id="raiz" prefHeight="480.0" prefWidth="760.0" styleClass="tarjeta-login">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/image/ImageLogin.png" />
-               </image>
-            </ImageView>
-            <Label styleClass="etiqueta" text="Usuario">
-               <font>
-                  <Font name="Arial Black" size="13.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtUsuario" prefHeight="32.0" prefWidth="380.0" styleClass="campo" />
-            <Label styleClass="etiqueta" text="Contraseña">
-               <font>
-                  <Font name="Arial Black" size="13.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="txtPassword" prefHeight="31.0" prefWidth="380.0" styleClass="campo" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+
+            <!-- Capa blanca: ocupa toda la tarjeta, el formulario queda a la izquierda -->
+            <VBox styleClass="capa-blanca">
                <children>
-                  <Hyperlink fx:id="linkRegistro" onAction="#handleIrARegistro" styleClass="link" text="¿No tienes cuenta? Registrate" />
+                  <HBox alignment="CENTER" prefHeight="91.0" prefWidth="384.0">
+                     <children>
+                        <ImageView fitHeight="102.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/image/cartyx_logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label styleClass="titulo-formulario" text="Iniciar sesión" />
+                  <Label styleClass="subtitulo-formulario" text="Ingresa tus datos para continuar.">
+                     <VBox.margin>
+                        <Insets bottom="6.0" />
+                     </VBox.margin>
+                  </Label>
+
+                  <VBox styleClass="grupo-campo">
+                     <children>
+                        <Label styleClass="etiqueta-campo" text="USUARIO" />
+                        <TextField fx:id="txtUsuario" maxWidth="Infinity" promptText="Ej. mgomez" styleClass="campo-entrada" />
+                     </children>
+                  </VBox>
+
+                  <VBox styleClass="grupo-campo">
+                     <children>
+                        <Label styleClass="etiqueta-campo" text="CONTRASEÑA" />
+                        <PasswordField fx:id="txtPassword" maxWidth="Infinity" promptText="Tu contraseña" styleClass="campo-entrada" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </VBox>
+
+                  <Label fx:id="lblError" styleClass="error" wrapText="true">
+                     <VBox.margin>
+                        <Insets top="4.0" />
+                     </VBox.margin>
+                  </Label>
+
+                  <Button fx:id="btnLogin" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleLogin" styleClass="boton-primario" text="Iniciar sesión">
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
-            </HBox>
-            <Label fx:id="lblError" styleClass="error" />
-            <Button id="btn-login" fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="41.0" prefWidth="172.0" text="Iniciar Sesion">
-               <font>
-                  <Font name="Arial Black" size="18.0" />
-               </font>
-            </Button>
+            </VBox>
+
+            <!-- Panel curvo: invita a crear una cuenta de cliente -->
+            <VBox maxWidth="381.0" prefHeight="496.0" prefWidth="381.0" styleClass="panel-color" StackPane.alignment="CENTER_RIGHT">
+               <children>
+                  <Label styleClass="panel-titulo" text="¡Hola!" />
+                  <Label styleClass="panel-cuerpo" text="Crea una cuenta de cliente para comprar nuestros productos y llevar el control de tus pedidos." />
+                  <Hyperlink fx:id="linkRegistro" onAction="#handleIrARegistro" styleClass="boton-fantasma" text="CREAR CUENTA">
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Hyperlink>
+                  <HBox alignment="BASELINE_CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="159.0" prefWidth="282.0">
+                     <children>
+                        <ImageView fitHeight="184.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/image/rem_feliz.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
          </children>
-      </VBox>
+      </StackPane>
    </children>
 </VBox>

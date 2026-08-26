@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.josemejia.system.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,10 +17,6 @@ import org.josemejia.system.service.ProductoService;
 import org.josemejia.system.utils.AnimacionUtils;
 import org.josemejia.system.utils.SessionManager;
 import org.josemejia.system.utils.ViewFactory;
-/**
- *
- * @author mejia
- */
 
 public class ProductoController {
 
@@ -128,16 +121,21 @@ public class ProductoController {
 
         User usuarioActual = SessionManager.getInstanciaSessionManager().getUsuarioActual();
 
-        if (productoSeleccionado == null) {
-            Producto producto = new Producto(txtNombre.getText(), precio, txtDescripcion.getText(), txtCategoria.getText(), txtImagen.getText());
-            productoService.crear(producto, usuarioActual);
-        } else {
-            productoSeleccionado.setNombre(txtNombre.getText());
-            productoSeleccionado.setPrecio(precio);
-            productoSeleccionado.setDescripcion(txtDescripcion.getText());
-            productoSeleccionado.setCategoria(txtCategoria.getText());
-            productoSeleccionado.setImagen(txtImagen.getText());
-            productoService.actualizar(productoSeleccionado, usuarioActual);
+        try {
+            if (productoSeleccionado == null) {
+                Producto producto = new Producto(txtNombre.getText(), precio, txtDescripcion.getText(), txtCategoria.getText(), txtImagen.getText());
+                productoService.crear(producto, usuarioActual);
+            } else {
+                productoSeleccionado.setNombre(txtNombre.getText());
+                productoSeleccionado.setPrecio(precio);
+                productoSeleccionado.setDescripcion(txtDescripcion.getText());
+                productoSeleccionado.setCategoria(txtCategoria.getText());
+                productoSeleccionado.setImagen(txtImagen.getText());
+                productoService.actualizar(productoSeleccionado, usuarioActual);
+            }
+        } catch (IllegalStateException e) {
+            mostrarAlerta(e.getMessage());
+            return;
         }
 
         limpiarFormulario();
@@ -152,7 +150,14 @@ public class ProductoController {
         }
 
         User usuarioActual = SessionManager.getInstanciaSessionManager().getUsuarioActual();
-        productoService.eliminar(productoSeleccionado, usuarioActual);
+
+        try {
+            productoService.eliminar(productoSeleccionado, usuarioActual);
+        } catch (IllegalStateException e) {
+            mostrarAlerta(e.getMessage());
+            return;
+        }
+
         limpiarFormulario();
         cargarTabla();
     }
@@ -178,7 +183,11 @@ public class ProductoController {
     }
 
     private void mostrarAlerta(String mensaje) {
-        AnimacionUtils.mostrarAlertaPersonalizada("Atención", mensaje, AnimacionUtils.TipoNotificacion.ADVERTENCIA);
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("Atención");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensaje);
+        alerta.showAndWait();
     }
     
         @FXML
@@ -186,7 +195,7 @@ public class ProductoController {
 
     @FXML
     private void handleContactarAdmin() {
-        MainClass.getAppHostServices().showDocument("https://github.com/jmejia-2026285");
+        MainClass.getAppHostServices().showDocument("https://github.com/AngelML-2026285");
     }
 
 }

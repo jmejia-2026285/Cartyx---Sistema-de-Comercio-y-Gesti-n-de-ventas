@@ -9,51 +9,127 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="650.0" styleClass="contenedor-principal" stylesheets="@../resources/styles/CreateAccountStyles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.RegistroController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="800.0" stylesheets="@../resources/styles/CreateAccountStyles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.RegistroController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="231.0" spacing="4.0" styleClass="formulario" stylesheets="@../resources/styles/CreateAccountStyles.css">
+      <StackPane fx:id="raiz" prefHeight="615.0" prefWidth="800.0" styleClass="tarjeta-registro">
          <children>
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="234.0" text="Crear Cuenta">
-               <font>
-                  <Font name="Microsoft Sans Serif" size="23.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="33.0" prefWidth="231.0" text="Nombre completo" />
-            <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="230.0" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="232.0" text="Apellidos" />
-            <TextField fx:id="txtApellidos" />
-            <Label alignment="CENTER" contentDisplay="TOP" prefHeight="17.0" prefWidth="232.0" text="Nombre de Usuario" />
-            <TextField fx:id="txtUsuario" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Correo Electronico " />
-            <TextField fx:id="txtCorreo" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Contraseña" />
-            <PasswordField fx:id="txtPassword" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="255.0" text="Confirmar Contraseña" />
-            <PasswordField fx:id="txtConfirmarPassword" />
-            <Label fx:id="lblError" styleClass="error" />
-            <Button fx:id="btnRegistrarse" alignment="CENTER" contentDisplay="CENTER" lineSpacing="8.0" mnemonicParsing="false" onAction="#handleRegistrarse" prefHeight="20.0" prefWidth="150.0" text="Registrarse" />
+
+            <!-- Capa blanca: ocupa toda la tarjeta, el formulario queda a la izquierda -->
+            <VBox prefHeight="619.0" prefWidth="800.0" styleClass="capa-blanca">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="86.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/image/cartyx_logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label styleClass="titulo-formulario" text="Crear cuenta" />
+                  <Label styleClass="subtitulo-formulario" text="Regístrate como cliente para empezar a comprar.">
+                     <VBox.margin>
+                        <Insets bottom="6.0" />
+                     </VBox.margin>
+                  </Label>
+
+                  <HBox spacing="12.0">
+                     <children>
+                        <VBox styleClass="grupo-campo" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="etiqueta-campo" text="NOMBRE" />
+                              <TextField fx:id="txtNombre" maxWidth="Infinity" promptText="Ej. María" styleClass="campo-entrada" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="grupo-campo" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="etiqueta-campo" text="APELLIDOS" />
+                              <TextField fx:id="txtApellidos" maxWidth="Infinity" promptText="Ej. Gómez" styleClass="campo-entrada" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+
+                  <VBox styleClass="grupo-campo">
+                     <children>
+                        <Label styleClass="etiqueta-campo" text="NOMBRE DE USUARIO" />
+                        <TextField fx:id="txtUsuario" maxWidth="Infinity" promptText="Ej. mgomez" styleClass="campo-entrada" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </VBox>
+
+                  <VBox styleClass="grupo-campo">
+                     <children>
+                        <Label styleClass="etiqueta-campo" text="CORREO ELECTRÓNICO" />
+                        <TextField fx:id="txtCorreo" maxWidth="Infinity" promptText="ejemplo@correo.com" styleClass="campo-entrada" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </VBox>
+
+                  <HBox spacing="12.0">
+                     <children>
+                        <VBox styleClass="grupo-campo" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="etiqueta-campo" text="CONTRASEÑA" />
+                              <PasswordField fx:id="txtPassword" maxWidth="Infinity" promptText="Mínimo 8 caracteres" styleClass="campo-entrada" />
+                           </children>
+                        </VBox>
+                        <VBox styleClass="grupo-campo" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="etiqueta-campo" text="CONFIRMAR" />
+                              <PasswordField fx:id="txtConfirmarPassword" maxWidth="Infinity" promptText="Repite tu contraseña" styleClass="campo-entrada" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="8.0" />
+                     </VBox.margin>
+                  </HBox>
+
+                  <Label fx:id="lblError" styleClass="error" wrapText="true">
+                     <VBox.margin>
+                        <Insets top="4.0" />
+                     </VBox.margin>
+                  </Label>
+
+                  <Button fx:id="btnRegistrarse" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleRegistrarse" styleClass="boton-primario" text="Crear cuenta">
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+
+                  <!-- Panel curvo: invita a volver a iniciar sesión -->
+            <VBox prefHeight="609.0" prefWidth="379.0" styleClass="panel-color" StackPane.alignment="CENTER_RIGHT">
+               <children>
+                  <Label styleClass="panel-titulo" text="¿Ya tienes cuenta?" />
+                  <Label styleClass="panel-cuerpo" text="Inicia sesión para seguir comprando y revisar tus pedidos." />
+                  <Hyperlink fx:id="linkVolverLogin" onAction="#handleVolverLogin" styleClass="boton-fantasma" text="INICIAR SESIÓN">
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Hyperlink>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="184.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/image/Rem_dudosa_cute.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
          </children>
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
-      </VBox>
-      <VBox prefHeight="430.0" prefWidth="412.0">
-         <children>
-            <ImageView fitHeight="441.0" fitWidth="442.0" pickOnBounds="true" preserveRatio="true" styleClass="imagen-registro">
-               <image>
-                  <Image url="@../resources/image/CreateAcountImage.gif" />
-               </image></ImageView>
-            <Hyperlink fx:id="linkVolverLogin" alignment="CENTER" onAction="#handleVolverLogin" prefHeight="23.0" prefWidth="399.0" text="¿Ya tienes cuenta? Inicia Sesion" />
-         </children>
-      </VBox>
+      </StackPane>
    </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
-</HBox>
+</VBox>
