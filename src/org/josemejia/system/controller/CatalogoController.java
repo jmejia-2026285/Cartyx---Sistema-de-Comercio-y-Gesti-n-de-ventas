@@ -47,18 +47,32 @@ public class CatalogoController {
         AnimacionUtils.aplicarEfectoHover(btnVolver);
     }
 
-    private VBox crearTarjeta(Producto producto) {
+        private VBox crearTarjeta(Producto producto) {
         ImageView imagenView = new ImageView();
         imagenView.setFitWidth(180);
         imagenView.setFitHeight(140);
         imagenView.setPreserveRatio(false);
 
+        // Carga asíncrona compatible con Wikipedia y servidores protegidos
         if (producto.getImagen() != null && !producto.getImagen().isBlank()) {
-            try {
-                imagenView.setImage(new Image(producto.getImagen(), true));
-            } catch (IllegalArgumentException e) {
-                
-            }
+            new Thread(() -> {
+                try {
+                    java.net.URL url = new java.net.URL(producto.getImagen());
+                    java.net.URLConnection conexion = url.openConnection();
+                    
+                    // Engaña al servidor simulando una petición desde un navegador web
+                    conexion.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
+                    
+                    try (java.io.InputStream stream = conexion.getInputStream()) {
+                        Image imagen = new Image(stream);
+                        
+                        // Modifica la interfaz gráfica de forma segura en el hilo de JavaFX
+                        javafx.application.Platform.runLater(() -> imagenView.setImage(imagen));
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error al cargar la imagen de " + producto.getNombre() + ": " + e.getMessage());
+                }
+            }).start();
         }
 
         StackPane contenedorImagen = new StackPane(imagenView);
@@ -92,6 +106,7 @@ public class CatalogoController {
 
         return tarjeta;
     }
+
 
     private void actualizarContadorCarrito() {
         int cantidad = CarritoManager.getInstanciaCarritoManager().getItems().size();
