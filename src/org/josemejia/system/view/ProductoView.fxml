@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -49,7 +50,19 @@
             <TextField fx:id="txtPrecio" promptText="Precio" styleClass="campo-texto" />
             <TextField fx:id="txtDescripcion" promptText="Descripción" styleClass="campo-texto" />
             <TextField fx:id="txtCategoria" promptText="Categoría" styleClass="campo-texto" />
-            <TextField fx:id="txtImagen" promptText="URL de la imagen" styleClass="campo-texto" />
+         </children>
+      </HBox>
+
+      <HBox alignment="CENTER_LEFT" spacing="12">
+         <children>
+            <StackPane styleClass="vista-previa-caja">
+               <children>
+                  <Label styleClass="vista-previa-icono" text="🖼" />
+                  <ImageView fx:id="imgPreview" fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </StackPane>
+            <Button fx:id="btnSeleccionarImagen" onAction="#handleSeleccionarImagen" styleClass="boton-secundario" text="Elegir imagen" />
+            <Label fx:id="lblArchivoImagen" styleClass="texto-archivo" text="Sin imagen seleccionada" />
          </children>
       </HBox>
 

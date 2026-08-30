@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import org.josemejia.system.model.User;
 import org.josemejia.system.service.AuthService;
 import org.josemejia.system.utils.AnimacionUtils;
+import org.josemejia.system.utils.ValidationsUtils;
 import org.josemejia.system.utils.ViewFactory;
 /**
  *
@@ -58,6 +59,18 @@ public class RegistroController {
             AnimacionUtils.mostrarAlertaPersonalizada(
                     "Campos obligatorios",
                     "Usuario y contraseña son obligatorios.",
+                    AnimacionUtils.TipoNotificacion.ADVERTENCIA
+);
+
+            return;
+        }
+
+        String errorCorreo = ValidationsUtils.obtenerErrorCorreo(txtCorreo.getText());
+        if (errorCorreo != null) {
+            lblError.setText(errorCorreo);
+            AnimacionUtils.mostrarAlertaPersonalizada(
+                    "Correo inválido",
+                    errorCorreo,
                     AnimacionUtils.TipoNotificacion.ADVERTENCIA
 );
 

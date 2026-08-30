@@ -1,20 +1,27 @@
 package org.josemejia.system.controller;
 
+import java.io.File;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import org.josemejia.system.MainClass;
 import org.josemejia.system.model.Producto;
 import org.josemejia.system.model.User;
 import org.josemejia.system.service.ProductoService;
 import org.josemejia.system.utils.AnimacionUtils;
+import org.josemejia.system.utils.ImagenUtils;
 import org.josemejia.system.utils.SessionManager;
 import org.josemejia.system.utils.ViewFactory;
 
@@ -51,7 +58,13 @@ public class ProductoController {
     private TextField txtCategoria;
 
     @FXML
-    private TextField txtImagen;
+    private ImageView imgPreview;
+
+    @FXML
+    private Button btnSeleccionarImagen;
+
+    @FXML
+    private Label lblArchivoImagen;
 
     @FXML
     private Button btnGuardar;
@@ -69,6 +82,7 @@ public class ProductoController {
     private final ViewFactory viewFactory = new ViewFactory();
 
     private Producto productoSeleccionado;
+    private String rutaImagenSeleccionada;
 
     @FXML
     private void initialize() {
@@ -86,7 +100,10 @@ public class ProductoController {
                 txtPrecio.setText(String.valueOf(actual.getPrecio()));
                 txtDescripcion.setText(actual.getDescripcion());
                 txtCategoria.setText(actual.getCategoria());
-                txtImagen.setText(actual.getImagen());
+                rutaImagenSeleccionada = actual.getImagen();
+                lblArchivoImagen.setText(actual.getImagen() == null || actual.getImagen().isBlank()
+                        ? "Sin imagen seleccionada" : "Imagen actual del producto");
+                cargarImagenEnPreview(rutaImagenSeleccionada);
             }
         });
 
@@ -97,6 +114,7 @@ public class ProductoController {
         AnimacionUtils.aplicarEfectoHover(btnEliminar);
         AnimacionUtils.aplicarEfectoHover(btnLimpiar);
         AnimacionUtils.aplicarEfectoHover(btnVolver);
+        AnimacionUtils.aplicarEfectoHover(btnSeleccionarImagen);
     }
 
     private void cargarTabla() {
@@ -123,14 +141,14 @@ public class ProductoController {
 
         try {
             if (productoSeleccionado == null) {
-                Producto producto = new Producto(txtNombre.getText(), precio, txtDescripcion.getText(), txtCategoria.getText(), txtImagen.getText());
+                Producto producto = new Producto(txtNombre.getText(), precio, txtDescripcion.getText(), txtCategoria.getText(), rutaImagenSeleccionada);
                 productoService.crear(producto, usuarioActual);
             } else {
                 productoSeleccionado.setNombre(txtNombre.getText());
                 productoSeleccionado.setPrecio(precio);
                 productoSeleccionado.setDescripcion(txtDescripcion.getText());
                 productoSeleccionado.setCategoria(txtCategoria.getText());
-                productoSeleccionado.setImagen(txtImagen.getText());
+                productoSeleccionado.setImagen(rutaImagenSeleccionada);
                 productoService.actualizar(productoSeleccionado, usuarioActual);
             }
         } catch (IllegalStateException e) {
@@ -163,6 +181,40 @@ public class ProductoController {
     }
 
     @FXML
+    private void handleSeleccionarImagen() {
+        FileChooser selector = new FileChooser();
+        selector.setTitle("Selecciona una imagen del producto");
+        selector.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"));
+
+        File archivoOrigen = selector.showOpenDialog(btnSeleccionarImagen.getScene().getWindow());
+        if (archivoOrigen == null) {
+            return;
+        }
+
+        try {
+            File archivoCopiado = ImagenUtils.copiarImagenAAppData(archivoOrigen);
+            rutaImagenSeleccionada = ImagenUtils.obtenerUrlDeImagen(archivoCopiado);
+            lblArchivoImagen.setText(archivoOrigen.getName());
+            cargarImagenEnPreview(rutaImagenSeleccionada);
+        } catch (IOException e) {
+            AnimacionUtils.mostrarAlertaPersonalizada("Error", "No se pudo cargar la imagen seleccionada.", AnimacionUtils.TipoNotificacion.ERROR);
+        }
+    }
+
+    private void cargarImagenEnPreview(String rutaImagen) {
+        if (rutaImagen == null || rutaImagen.isBlank()) {
+            imgPreview.setImage(null);
+            return;
+        }
+        try {
+            imgPreview.setImage(new Image(rutaImagen, 64, 64, true, true));
+        } catch (Exception e) {
+            imgPreview.setImage(null);
+        }
+    }
+
+    @FXML
     private void handleLimpiar() {
         limpiarFormulario();
     }
@@ -178,7 +230,9 @@ public class ProductoController {
         txtPrecio.clear();
         txtDescripcion.clear();
         txtCategoria.clear();
-        txtImagen.clear();
+        rutaImagenSeleccionada = null;
+        lblArchivoImagen.setText("Sin imagen seleccionada");
+        imgPreview.setImage(null);
         tablaProductos.getSelectionModel().clearSelection();
     }
 

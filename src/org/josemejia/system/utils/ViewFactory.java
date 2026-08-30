@@ -41,9 +41,9 @@ public class ViewFactory {
             switch (nameFile){
                 case "login" -> scene = loadFileFXML("LoginView.fxml", 800, 500) ;
                 case "registro" -> scene = loadFileFXML("CreateAccountView.fxml", 800, 616);
-                case "dashboard" -> scene = loadFileFXML("DashboardView.fxml", 700, 500);
+                case "dashboard" -> scene = loadFileFXML("DashboardView.fxml", 860, 580);
                 case "productos" -> scene = loadFileFXML("ProductoView.fxml", 850, 600);
-                case "auditoria" -> scene = loadFileFXML("AuditoriaView.fxml", 700, 500);
+                case "auditoria" -> scene = loadFileFXML("AuditoriaView.fxml", 780, 560);
                 case "catalogo" -> scene = loadFileFXML("CatalogoView.fxml", 800, 560);
                 case "carrito" -> scene = loadFileFXML("CarritoView.fxml", 700, 520);
                 default -> throw new IllegalArgumentException("Vista no reconocida: " + nameFile);

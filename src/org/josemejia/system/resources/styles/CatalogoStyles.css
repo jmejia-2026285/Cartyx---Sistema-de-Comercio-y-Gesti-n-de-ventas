@@ -59,6 +59,11 @@
     -fx-background-radius: 10;
 }
 
+.icono-sin-imagen {
+    -fx-font-size: 32px;
+    -fx-text-fill: #64748b;
+}
+
 .nombre-producto {
     -fx-text-fill: #f1f5f9;
     -fx-font-size: 15px;

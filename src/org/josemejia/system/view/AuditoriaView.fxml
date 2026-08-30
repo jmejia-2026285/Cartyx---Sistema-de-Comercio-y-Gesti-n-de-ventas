@@ -5,25 +5,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="raiz" spacing="14" stylesheets="@../resources/styles/AuditoriaStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.AuditoriaController">
+<VBox fx:id="raiz" prefHeight="560.0" prefWidth="780.0" spacing="14" stylesheets="@../resources/styles/AuditoriaStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.AuditoriaController">
    <padding>
-      <Insets bottom="18" left="18" right="18" top="18" />
+      <Insets bottom="20" left="20" right="20" top="20" />
    </padding>
    <children>
-      <Label styleClass="titulo-vista" text="Auditoría" />
+      <HBox alignment="CENTER_LEFT" spacing="10">
+         <children>
+            <Label maxWidth="Infinity" styleClass="titulo-vista" text="🕵  Auditoría" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnVolver" onAction="#handleVolver" styleClass="boton-secundario" text="Volver al Menú" />
+         </children>
+      </HBox>
+      <Label styleClass="subtitulo-vista" text="Historial de acciones realizadas por los usuarios del sistema." />
 
-      <TableView fx:id="tablaAuditoria" prefHeight="350.0" styleClass="tabla">
+      <TableView fx:id="tablaAuditoria" prefHeight="400.0" styleClass="tabla" VBox.vgrow="ALWAYS">
          <columns>
             <TableColumn fx:id="colUsuario" prefWidth="100.0" text="Usuario" />
             <TableColumn fx:id="colAccion" prefWidth="140.0" text="Acción" />
             <TableColumn fx:id="colEntidad" prefWidth="100.0" text="Entidad" />
-            <TableColumn fx:id="colDetalle" prefWidth="220.0" text="Detalle" />
+            <TableColumn fx:id="colDetalle" prefWidth="240.0" text="Detalle" />
             <TableColumn fx:id="colFecha" prefWidth="150.0" text="Fecha" />
          </columns>
       </TableView>
-
-      <Button fx:id="btnVolver" onAction="#handleVolver" styleClass="boton-secundario" text="Volver al Menú" />
    </children>
 </VBox>

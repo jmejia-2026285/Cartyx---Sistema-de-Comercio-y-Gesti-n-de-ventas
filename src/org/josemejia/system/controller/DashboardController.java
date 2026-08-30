@@ -33,6 +33,18 @@ public class DashboardController {
     @FXML
     private Button btnCerrarSesion;
 
+    @FXML
+    private Button cardProductos;
+
+    @FXML
+    private Button cardAuditoria;
+
+    @FXML
+    private Button cardCatalogo;
+
+    @FXML
+    private Button cardCarrito;
+
     private final AuthService authService = new AuthService();
     private final ViewFactory viewFactory = new ViewFactory();
 
@@ -41,14 +53,8 @@ public class DashboardController {
         User usuarioActual = SessionManager.getInstanciaSessionManager().getUsuarioActual();
         lblUsuario.setText("Bienvenido, " + usuarioActual.getName());
 
-        // 1. Limpiamos espacios e ignoramos mayúsculas/minúsculas
-        String rol = (usuarioActual.getRol() != null) ? usuarioActual.getRol().trim() : "";
-        boolean esAdministrador = "admin".equalsIgnoreCase(rol) || "administrador".equalsIgnoreCase(rol);
+        boolean esAdministrador = "administrador".equals(usuarioActual.getRol());
 
-        // 2. Verificación rápida en consola
-        System.out.println("¿Es admin la condición?: " + esAdministrador); // Debe dar true
-
-        // 3. Aplicar visibilidad
         btnProductos.setVisible(esAdministrador);
         btnProductos.setManaged(esAdministrador);
 
@@ -61,13 +67,28 @@ public class DashboardController {
         btnCarrito.setVisible(!esAdministrador);
         btnCarrito.setManaged(!esAdministrador);
 
-        // Animaciones
+        cardProductos.setVisible(esAdministrador);
+        cardProductos.setManaged(esAdministrador);
+
+        cardAuditoria.setVisible(esAdministrador);
+        cardAuditoria.setManaged(esAdministrador);
+
+        cardCatalogo.setVisible(!esAdministrador);
+        cardCatalogo.setManaged(!esAdministrador);
+
+        cardCarrito.setVisible(!esAdministrador);
+        cardCarrito.setManaged(!esAdministrador);
+
         AnimacionUtils.aplicarFadeIn(raiz);
         AnimacionUtils.aplicarEfectoHover(btnProductos);
         AnimacionUtils.aplicarEfectoHover(btnAuditoria);
         AnimacionUtils.aplicarEfectoHover(btnCatalogo);
         AnimacionUtils.aplicarEfectoHover(btnCarrito);
         AnimacionUtils.aplicarEfectoHover(btnCerrarSesion);
+        AnimacionUtils.aplicarEfectoHover(cardProductos);
+        AnimacionUtils.aplicarEfectoHover(cardAuditoria);
+        AnimacionUtils.aplicarEfectoHover(cardCatalogo);
+        AnimacionUtils.aplicarEfectoHover(cardCarrito);
     }
 
     @FXML

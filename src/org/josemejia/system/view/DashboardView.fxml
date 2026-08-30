@@ -1,32 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="raiz" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="@../resources/styles/DashboardStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.DashboardController">
+<BorderPane fx:id="raiz" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="860.0" stylesheets="@../resources/styles/DashboardStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.DashboardController">
    <top>
-      <HBox alignment="CENTER_LEFT" spacing="10" styleClass="barra-superior">
+      <HBox alignment="CENTER_LEFT" spacing="14" styleClass="barra-superior">
+         <BorderPane.margin>
+            <Insets bottom="10" left="18" right="18" top="18" />
+         </BorderPane.margin>
          <children>
-            <Label styleClass="titulo-app" text="Tienda" />
+            <StackPane styleClass="marca-chip">
+               <children>
+                  <ImageView fitHeight="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/image/cartyx_logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <Region HBox.hgrow="ALWAYS" />
             <Label fx:id="lblUsuario" styleClass="texto-usuario" />
          </children>
       </HBox>
    </top>
    <left>
-      <VBox prefWidth="170.0" spacing="6" styleClass="menu-lateral">
+      <VBox prefWidth="190.0" spacing="6" styleClass="menu-lateral">
+         <BorderPane.margin>
+            <Insets bottom="18" left="18" right="10" top="0" />
+         </BorderPane.margin>
          <children>
-            <Button fx:id="btnProductos" maxWidth="Infinity" onAction="#handleProductos" styleClass="boton-menu" text="Productos" />
-            <Button fx:id="btnAuditoria" maxWidth="Infinity" onAction="#handleAuditoria" styleClass="boton-menu" text="Auditoría" />
-            <Button fx:id="btnCatalogo" maxWidth="Infinity" onAction="#handleCatalogo" styleClass="boton-menu" text="Catálogo" />
-            <Button fx:id="btnCarrito" maxWidth="Infinity" onAction="#handleCarrito" styleClass="boton-menu" text="Carrito" />
+            <Label styleClass="menu-titulo" text="MENÚ" />
+            <Button fx:id="btnProductos" maxWidth="Infinity" onAction="#handleProductos" styleClass="boton-menu" text="📦  Productos" />
+            <Button fx:id="btnAuditoria" maxWidth="Infinity" onAction="#handleAuditoria" styleClass="boton-menu" text="🕵  Auditoría" />
+            <Button fx:id="btnCatalogo" maxWidth="Infinity" onAction="#handleCatalogo" styleClass="boton-menu" text="🛍  Catálogo" />
+            <Button fx:id="btnCarrito" maxWidth="Infinity" onAction="#handleCarrito" styleClass="boton-menu" text="🛒  Carrito" />
+            <Region VBox.vgrow="ALWAYS" />
+            <VBox alignment="CENTER" spacing="6" styleClass="mascota-caja">
+               <children>
+                  <ImageView fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/image/rem_feliz.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="mascota-texto" text="¡Todo listo!" wrapText="true" />
+               </children>
+            </VBox>
             <Button fx:id="btnCerrarSesion" maxWidth="Infinity" onAction="#handleCerrarSesion" styleClass="boton-menu-salir" text="Cerrar Sesión" />
          </children>
       </VBox>
    </left>
    <center>
-      <Label styleClass="panel-bienvenida" text="Selecciona una opción del menú." />
+      <VBox alignment="TOP_CENTER" spacing="8" styleClass="panel-bienvenida">
+         <BorderPane.margin>
+            <Insets bottom="18" left="0" right="18" top="0" />
+         </BorderPane.margin>
+         <children>
+            <Label styleClass="bienvenida-titulo" text="¿Qué querés hacer hoy?" />
+            <Label styleClass="bienvenida-subtitulo" text="Elegí una opción para comenzar." />
+            <FlowPane alignment="CENTER" hgap="16" vgap="16">
+               <children>
+                  <Button fx:id="cardProductos" contentDisplay="GRAPHIC_ONLY" onAction="#handleProductos" styleClass="tarjeta-acceso">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                           <children>
+                              <StackPane styleClass="tarjeta-icono-caja">
+                                 <children>
+                                    <Label styleClass="tarjeta-icono" text="📦" />
+                                 </children>
+                              </StackPane>
+                              <VBox alignment="CENTER_LEFT" spacing="4">
+                                 <children>
+                                    <Label styleClass="tarjeta-acceso-titulo" text="Productos" />
+                                    <Label styleClass="tarjeta-acceso-desc" text="Administrar el catálogo" wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="cardAuditoria" contentDisplay="GRAPHIC_ONLY" onAction="#handleAuditoria" styleClass="tarjeta-acceso">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                           <children>
+                              <StackPane styleClass="tarjeta-icono-caja">
+                                 <children>
+                                    <Label styleClass="tarjeta-icono" text="🕵" />
+                                 </children>
+                              </StackPane>
+                              <VBox alignment="CENTER_LEFT" spacing="4">
+                                 <children>
+                                    <Label styleClass="tarjeta-acceso-titulo" text="Auditoría" />
+                                    <Label styleClass="tarjeta-acceso-desc" text="Ver el historial de acciones" wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="cardCatalogo" contentDisplay="GRAPHIC_ONLY" onAction="#handleCatalogo" styleClass="tarjeta-acceso">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                           <children>
+                              <StackPane styleClass="tarjeta-icono-caja">
+                                 <children>
+                                    <Label styleClass="tarjeta-icono" text="🛍" />
+                                 </children>
+                              </StackPane>
+                              <VBox alignment="CENTER_LEFT" spacing="4">
+                                 <children>
+                                    <Label styleClass="tarjeta-acceso-titulo" text="Catálogo" />
+                                    <Label styleClass="tarjeta-acceso-desc" text="Ver los productos disponibles" wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="cardCarrito" contentDisplay="GRAPHIC_ONLY" onAction="#handleCarrito" styleClass="tarjeta-acceso">
+                     <graphic>
+                        <HBox alignment="CENTER_LEFT" spacing="14">
+                           <children>
+                              <StackPane styleClass="tarjeta-icono-caja">
+                                 <children>
+                                    <Label styleClass="tarjeta-icono" text="🛒" />
+                                 </children>
+                              </StackPane>
+                              <VBox alignment="CENTER_LEFT" spacing="4">
+                                 <children>
+                                    <Label styleClass="tarjeta-acceso-titulo" text="Carrito" />
+                                    <Label styleClass="tarjeta-acceso-desc" text="Revisar y confirmar tu compra" wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </Button>
+               </children>
+            </FlowPane>
+         </children>
+      </VBox>
    </center>
 </BorderPane>
