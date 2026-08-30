@@ -100,7 +100,7 @@ public class CatalogoController {
 
         if (ImagenUtils.esArchivoLocalValido(valorImagen)) {
             try {
-                imagenView.setImage(new Image(valorImagen, 180, 140, false, true));
+                imagenView.setImage(new Image(ImagenUtils.obtenerUrlCargable(valorImagen), 180, 140, false, true));
             } catch (Exception e) {
                 System.err.println("Error al cargar la imagen de " + producto.getNombre() + ": " + e.getMessage());
             }
@@ -112,6 +112,8 @@ public class CatalogoController {
             try {
                 java.net.URL url = new java.net.URL(valorImagen);
                 java.net.URLConnection conexion = url.openConnection();
+                conexion.setConnectTimeout(8000);
+                conexion.setReadTimeout(8000);
 
                 // Engaña al servidor simulando una petición desde un navegador web
                 conexion.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");

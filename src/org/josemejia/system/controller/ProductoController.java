@@ -67,6 +67,9 @@ public class ProductoController {
     private Label lblArchivoImagen;
 
     @FXML
+    private TextField txtUrlImagen;
+
+    @FXML
     private Button btnGuardar;
 
     @FXML
@@ -103,6 +106,7 @@ public class ProductoController {
                 rutaImagenSeleccionada = actual.getImagen();
                 lblArchivoImagen.setText(actual.getImagen() == null || actual.getImagen().isBlank()
                         ? "Sin imagen seleccionada" : "Imagen actual del producto");
+                txtUrlImagen.setText(ImagenUtils.esArchivoLocalValido(actual.getImagen()) ? "" : actual.getImagen());
                 cargarImagenEnPreview(rutaImagenSeleccionada);
             }
         });
@@ -202,13 +206,24 @@ public class ProductoController {
         }
     }
 
+    @FXML
+    private void handleUrlImagen() {
+        String url = txtUrlImagen.getText();
+        if (url == null || url.isBlank()) {
+            return;
+        }
+        rutaImagenSeleccionada = url.trim();
+        lblArchivoImagen.setText("URL de imagen");
+        cargarImagenEnPreview(rutaImagenSeleccionada);
+    }
+
     private void cargarImagenEnPreview(String rutaImagen) {
         if (rutaImagen == null || rutaImagen.isBlank()) {
             imgPreview.setImage(null);
             return;
         }
         try {
-            imgPreview.setImage(new Image(rutaImagen, 64, 64, true, true));
+            imgPreview.setImage(new Image(ImagenUtils.obtenerUrlCargable(rutaImagen), 64, 64, true, true));
         } catch (Exception e) {
             imgPreview.setImage(null);
         }
@@ -232,6 +247,7 @@ public class ProductoController {
         txtCategoria.clear();
         rutaImagenSeleccionada = null;
         lblArchivoImagen.setText("Sin imagen seleccionada");
+        txtUrlImagen.clear();
         imgPreview.setImage(null);
         tablaProductos.getSelectionModel().clearSelection();
     }

@@ -39,18 +39,37 @@ public class ImagenUtils {
     }
 
     public static boolean esArchivoLocalValido(String valorGuardado) {
+        return obtenerArchivoLocal(valorGuardado) != null;
+    }
+
+    /**
+     * Convierte lo que haya guardado en BD (una URI "file:..." o una ruta
+     * cruda tipo "C:\Users\...") en una URL "file:" valida para que
+     * javafx.scene.image.Image la pueda cargar.
+     *
+     * Antes esArchivoLocalValido() aceptaba rutas crudas (sin "file:"), pero
+     * cargarImagenProducto() le pasaba esa misma ruta cruda directo a
+     * new Image(url, ...), y esa clase exige una URL con esquema. Por eso
+     * cargaba bien el preview (que usaba la misma ruta que guardaba
+     * ImagenUtils, con "file:") pero fallaba con rutas guardadas manualmente.
+     */
+    public static String obtenerUrlCargable(String valorGuardado) {
+        File archivo = obtenerArchivoLocal(valorGuardado);
+        return archivo != null ? archivo.toURI().toString() : valorGuardado;
+    }
+
+    private static File obtenerArchivoLocal(String valorGuardado) {
         if (valorGuardado == null || valorGuardado.isBlank()) {
-            return false;
+            return null;
         }
 
         try {
-            if (valorGuardado.startsWith("file:")) {
-                File archivo = new File(new URI(valorGuardado));
-                return archivo.exists();
-            }
-            return new File(valorGuardado).exists();
+            File archivo = valorGuardado.startsWith("file:")
+                    ? new File(new URI(valorGuardado))
+                    : new File(valorGuardado);
+            return archivo.exists() ? archivo : null;
         } catch (Exception e) {
-            return false;
+            return null;
         }
     }
 }

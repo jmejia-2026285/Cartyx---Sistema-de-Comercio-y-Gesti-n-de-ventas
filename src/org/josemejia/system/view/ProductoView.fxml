@@ -62,6 +62,7 @@
                </children>
             </StackPane>
             <Button fx:id="btnSeleccionarImagen" onAction="#handleSeleccionarImagen" styleClass="boton-secundario" text="Elegir imagen" />
+            <TextField fx:id="txtUrlImagen" onAction="#handleUrlImagen" promptText="...o pega una URL de imagen" styleClass="campo-texto" />
             <Label fx:id="lblArchivoImagen" styleClass="texto-archivo" text="Sin imagen seleccionada" />
          </children>
       </HBox>

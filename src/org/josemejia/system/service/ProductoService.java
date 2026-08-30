@@ -35,7 +35,8 @@ public class ProductoService {
     }
 
     private void verificarEsAdministrador(User usuarioActual) {
-        if (!"admin".equals(usuarioActual.getRol())) {
+        String rol = usuarioActual.getRol() == null ? "" : usuarioActual.getRol().trim();
+        if (!"administrador".equalsIgnoreCase(rol)) {
             throw new IllegalStateException("Solo un administrador puede modificar productos.");
         }
     }

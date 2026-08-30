@@ -53,7 +53,8 @@ public class DashboardController {
         User usuarioActual = SessionManager.getInstanciaSessionManager().getUsuarioActual();
         lblUsuario.setText("Bienvenido, " + usuarioActual.getName());
 
-        boolean esAdministrador = "administrador".equals(usuarioActual.getRol());
+        String rol = usuarioActual.getRol() == null ? "" : usuarioActual.getRol().trim();
+        boolean esAdministrador = "administrador".equalsIgnoreCase(rol);
 
         btnProductos.setVisible(esAdministrador);
         btnProductos.setManaged(esAdministrador);

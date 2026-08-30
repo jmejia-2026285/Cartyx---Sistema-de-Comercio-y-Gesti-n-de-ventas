@@ -44,6 +44,8 @@ public class AnimacionUtils {
         }
     }
 
+    private static final String RUTA_CSS_ALERTA = "/org/josemejia/system/resources/styles/AlertStyles.css";
+
     private AnimacionUtils() {
     }
 
@@ -56,6 +58,7 @@ public class AnimacionUtils {
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         Label etiquetaMensaje = new Label(mensaje);
+        etiquetaMensaje.getStyleClass().add("mensaje-alerta");
         etiquetaMensaje.setWrapText(true);
         etiquetaMensaje.setMaxWidth(300);
         HBox contenedorLayout = new HBox(15);
@@ -73,6 +76,12 @@ public class AnimacionUtils {
         }
 
         alerta.getDialogPane().setContent(contenedorLayout);
+
+        // Aplica el mismo tema oscuro/indigo del resto del sistema al Alert.
+        alerta.getDialogPane().getStylesheets().add(
+                AnimacionUtils.class.getResource(RUTA_CSS_ALERTA).toExternalForm());
+        alerta.getDialogPane().getStyleClass().add("alerta-cartyx");
+
         alerta.showAndWait();
     }
 
